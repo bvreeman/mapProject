@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import PageFooter from "./components/Footer"
+import Map from "./components/Map"
 
 class App extends Component {
   render() {
@@ -63,17 +65,10 @@ class App extends Component {
                     <h4>Get my Adventure!</h4>
                 </button>
                 
-            </div>
-            <div className="footer">
-
-                <sub>&copy; Copyright 2018</sub>
-                {/* <!-- Sidebar Holder<sub>&copy; Copyright 2018</sub>--> */}
-            </div>
+            </div>        
         </nav>
-      <div className="results">
-        {/* <!-- DIV FOR MAP --> */}
-        <div id="map"></div>
-      </div>
+      <Map/>
+      <PageFooter/>
     </div>
     );
   }
