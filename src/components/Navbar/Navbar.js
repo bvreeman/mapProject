@@ -1,12 +1,8 @@
 import React from "react";
 import './Navbar.css';
 import {Link} from 'react-router-dom';
-// import FirebaseAuthUserContext from '../FirebaseAuthUserContext';
-// import FirebaseSignOut from '../FirebaseSignOut'
-// import * as routes from '../../constants/routes';
-// import SignIn from '../SignIn'
 
-// const HeaderNav = () => 
+// const Navbar = () => 
 //     <FirebaseAuthUserContext.Consumer>
 //         {authUser => authUser
 //             ? <NavigationAuth />
@@ -70,4 +66,4 @@ import {Link} from 'react-router-dom';
 //         </nav>
 //     </div>
 
-export default HeaderNav;
+export default Navbar;

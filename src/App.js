@@ -7,19 +7,18 @@ class App extends Component {
       <div className="App">
         <nav id="sidebar">
             <div className="sidebar-header">
-
-                <img src="assets/img/icon-white-eye.png " alt="Choose your own adventure" height="150" width="160"></img>
+                <img src="../assets/img/icon-white-eye.png " alt="Choose your own adventure" height="150" width="160"></img>
                 <h1>Adventure Planner</h1>
             </div>
             <ul className="list-unstyled components">
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Location</a>
                     <form className="collapse list-unstyled" id="pageSubmenu">
-                        <p className="input-text">
+                        <div className="input-text">
                           {/* <!-- <input type="text" id="locationCenter" placeholder="Enter City"> --> */}
-                            <input id= "zipCodeID" className="zipCode" placeholder="Enter US Zip Code" input type='number' maxlength='5'></input>
+                            <input id="zipCodeID" className="zipCode" placeholder="Enter US Zip Code" type='number' maxLength='5'></input>
                             <div id='warning'></div>
-                        </p>
+                        </div>
                     </form>
                     {/* <!-- </label> --> */}
                 </li>
