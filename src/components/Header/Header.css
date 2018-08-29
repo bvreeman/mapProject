@@ -1,0 +1,10 @@
+.headerContainer {
+    text-align: center;
+    background-color: #FF3900;
+    color: white;
+}
+
+.appTitle {
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

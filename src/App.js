@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 import PageFooter from "./components/Footer"
-import Map from "./components/Map"
+import MapContainer from "./components/Map"
+import Header from './components/Header'
+// import { MapContainer } from './components/Map/Map';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
+        <Header />
         <nav id="sidebar">
-            <div className="sidebar-header">
-                <img src="../assets/img/icon-white-eye.png " alt="Choose your own adventure" height="150" width="160"></img>
-                <h1>Adventure Planner</h1>
-            </div>
             <ul className="list-unstyled components">
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Location</a>
@@ -67,8 +66,8 @@ class App extends Component {
                 
             </div>        
         </nav>
-      <Map/>
-      <PageFooter/>
+      <MapContainer />
+      <PageFooter />
     </div>
     );
   }
