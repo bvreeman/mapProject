@@ -32,7 +32,7 @@ export class MapContainer extends React.PureComponent{
                 centerAroundCurrentLocation
                 className='mapDiv'
                 google={this.props.google} 
-                zoom={14}
+                zoom={10}
                 styles={[
                         {elementType: 'geometry', stylers: [{color: '#172436'}]},
                         {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -113,10 +113,10 @@ export class MapContainer extends React.PureComponent{
                             stylers: [{color: '#17263c'}]
                         }
                     ]}
-                    initialCenter={{
-                        lat:  44.986656,
-                        lng: -93.258133
-                    }}
+                    // initialCenter={{
+                    //     lat:  44.986656,
+                    //     lng: -93.258133
+                    // }}
                 >
                 <Marker onClick={this.onMarkerClick}
                     name={'Current location'} />
