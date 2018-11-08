@@ -8,16 +8,11 @@ import Header from './components/Header'
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="App">
         <Header />             
-            {/* <div className="get-adv-btn">
-                <button type="button" id="getAdventure" className="btn btn-custom">
-                    <h4>Get my Adventure!</h4>
-                </button>
-            </div>         */}
-      <MapContainer />
-      <PageFooter />
-    </div>
+        <MapContainer />
+        <PageFooter />
+      </div>
     );
   }
 }

@@ -1,4 +1,27 @@
 .mapDiv {
-    max-width: 50%;
-    max-height: 50%;
+    align-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+.mapContainer {
+    width: 75%;
+    height: 500px;
+    margin: auto;
+}
+
+.zipEntry {
+    margin-bottom: 10px;
+}
+
+#zipCodeID {
+    /* padding-right: 10px; */
+    float: right;
+}
+
+#getAdventureButton {
+    background-color: #FF3900;
+    color: white;
+    font-weight: bold;
+    
 }
