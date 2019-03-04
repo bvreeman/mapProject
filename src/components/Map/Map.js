@@ -37,6 +37,7 @@ export class MapContainer extends React.PureComponent{
     }
 
     onSubmit = (e) => {
+        e.preventDefault();
         const z = document.forms["zipCodeForm"]["zipCode"].value;
       
         if(!/^[0-9]+$/.test(z)){
@@ -45,7 +46,6 @@ export class MapContainer extends React.PureComponent{
             alert("Zip Code must be 5 characters long")
         }
         console.log(this.state, 'state onSubmit')
-        e.preventDefault();
         document.getElementById("zipCodeForm").reset();
         // this.props.history.push('/ProfileForm')
     }

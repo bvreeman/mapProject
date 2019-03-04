@@ -7,7 +7,7 @@ const mapStyles = {
         width: '100%',
         height: '100%',
     }
-    
+
     // [{elementType: 'geometry', stylers: [{color: '#172436'}]},
     // {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
     // {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
@@ -101,6 +101,7 @@ export class CurrentLocation extends React.Component {
     };
   }
   componentDidMount() {
+      console.log(this.props, 'props here?')
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(pos => {
