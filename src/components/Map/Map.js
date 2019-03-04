@@ -1,94 +1,17 @@
 import React from "react";
 import './Map.css';
 // import {Link} from 'react-router-dom';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import CurrentLocation from '../CurrentLocation';
 
-const mapStyles = [
-    {elementType: 'geometry', stylers: [{color: '#172436'}]},
-    {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-    {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-    {
-        featureType: 'administrative.locality',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-    },
-    {
-        featureType: 'poi',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-    },
-    {
-        featureType: 'poi.park',
-        elementType: 'geometry',
-        stylers: [{color: '#768B8E'}]
-    },
-    {
-        featureType: 'poi.park',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#ffffff'}]
-    },
-    {
-        featureType: 'road',
-        elementType: 'geometry',
-        stylers: [{color: '#38414e'}]
-    },
-    {
-        featureType: 'road',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#212a37'}]
-    },
-    {
-        featureType: 'road',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#9ca5b3'}]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'geometry',
-        stylers: [{color: '#746855'}]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'geometry.stroke',
-        stylers: [{color: '#1f2835'}]
-    },
-    {
-        featureType: 'road.highway',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#f3d19c'}]
-    },
-    {
-        featureType: 'transit',
-        elementType: 'geometry',
-        stylers: [{color: '#2f3948'}]
-    },
-    {
-        featureType: 'transit.station',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#d59563'}]
-    },
-    {
-        featureType: 'water',
-        elementType: 'geometry',
-        stylers: [{color: '#000000'}]
-    },
-    {
-        featureType: 'water',
-        elementType: 'labels.text.fill',
-        stylers: [{color: '#aaaaaa'}]
-    },
-    {
-        featureType: 'water',
-        elementType: 'labels.text.stroke',
-        stylers: [{color: '#17263c'}]
-    }
-];
+let zipCodeVariable;
 
 export class MapContainer extends React.PureComponent{
     state = {
         showingInfoWindow: false,
         activeMarker: {},
         selectedPlace: {},
+        zipCode: '',
       };
     
     onMarkerClick = (props, marker, e) =>
@@ -107,46 +30,69 @@ export class MapContainer extends React.PureComponent{
         }
     };
 
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    onSubmit = (e) => {
+        const z = document.forms["zipCodeForm"]["zipCode"].value;
+      
+        if(!/^[0-9]+$/.test(z)){
+          alert("Please only enter numeric characters only for the Zip Code! (Allowed input:0-9)")
+        } else if (z.length < 5 || z.length > 5){
+            alert("Zip Code must be 5 characters long")
+        }
+        console.log(this.state, 'state onSubmit')
+        e.preventDefault();
+        document.getElementById("zipCodeForm").reset();
+        // this.props.history.push('/ProfileForm')
+    }
+
     render() {
-        console.log('on load', this.props)
+        // console.log('on load', this.props)
         return (
             <div className='mapProject'>
                 <div className="row zipEntry">
-                    <div className="col-md-6 col-xs-12">
-                        <input id="zipCodeID" className="zipCode" placeholder="Enter US Zip Code" type='number' maxLength='5'></input>
-                    </div>
-                    <div className="col-md-6 col-xs-12">
-                        <button type="button" id="getAdventureButton" className="btn btn-custom">
-                            Get my Adventure!
-                        </button>
-                    </div>
+                    <form id='zipCodeForm' onSubmit={this.onSubmit}>
+                        <div className="col-md-6 col-xs-12">
+                            <input 
+                                id="zipCode" 
+                                name='zipCode'
+                                placeholder="Enter US Zip Code" 
+                                type='text' 
+                                onChange={this.handleChange} 
+                                value={this.state.zipCode}
+                                maxLength='5'
+                            />
+                        </div>
+
+                        <div className="col-md-6 col-xs-12">
+                            <button className="btn btn-custom getAdventureButton">
+                                Get my Adventure!
+                            </button>
+                        </div>
+                    </form>
                 </div>  
                 <div className="col-md-12 col-xs-12 mapContainer">
-                    <Map 
+                    <CurrentLocation
                         centerAroundCurrentLocation
-                        className='mapDiv'
-                        google={this.props.google} 
-                        zoom={10}
-                        styles={mapStyles}
-                        initialCenter={{
-                            lat:  44.986656,
-                            lng: -93.258133
-                        }}
-                        >
-                        <Marker onClick={this.onMarkerClick}
-                            name={'Current location'} 
-                        />
-
-                        <InfoWindow 
-                            marker={this.state.activeMarker}
-                            visible={this.state.showingInfoWindow}
-                            onClose={this.onClose}
-                        >
-                            <div>
-                                <h1>{this.state.selectedPlace.name}</h1>
-                            </div>
-                        </InfoWindow>
-                    </Map>
+                        google={this.props.google}
+                    >
+                    <Marker onClick={this.onMarkerClick}
+                        name={'Current location'} 
+                    />
+                    <InfoWindow 
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}
+                        onClose={this.onClose}
+                    >
+                    <div>
+                        <h1>{this.state.selectedPlace.name}</h1>
+                    </div>
+                    </InfoWindow>
+                    </CurrentLocation>
                 </div>
             </div>
         );
