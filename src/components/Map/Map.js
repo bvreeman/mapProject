@@ -4,15 +4,21 @@ import './Map.css';
 import {InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import CurrentLocation from '../CurrentLocation';
 
-let zipCodeVariable;
+// let zipCodeVariable;
+// let map;
+// let service;
+// let infowindow;
 
 export class MapContainer extends React.PureComponent{
-    state = {
-        showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {},
-        zipCode: '',
-      };
+    constructor(props) {
+        super(props);
+        this.state = {
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+            zipCode: '',
+        };
+    }
     
     onMarkerClick = (props, marker, e) =>
         this.setState({
@@ -36,6 +42,10 @@ export class MapContainer extends React.PureComponent{
         })
     }
 
+    recenterMapByZipCode = () => {
+        
+    }
+
     onSubmit = (e) => {
         e.preventDefault();
         const z = document.forms["zipCodeForm"]["zipCode"].value;
@@ -45,8 +55,10 @@ export class MapContainer extends React.PureComponent{
         } else if (z.length < 5 || z.length > 5){
             alert("Zip Code must be 5 characters long")
         }
-        console.log(this.state, 'state onSubmit')
-        document.getElementById("zipCodeForm").reset();
+        // this.setState({
+        //     zipCode: ''
+        // });
+        // document.getElementById("zipCodeForm").reset();
         // this.props.history.push('/ProfileForm')
     }
 
@@ -79,6 +91,8 @@ export class MapContainer extends React.PureComponent{
                     <CurrentLocation
                         centerAroundCurrentLocation
                         google={this.props.google}
+                        zipCode={this.state.zipCode}
+
                     >
                     <Marker onClick={this.onMarkerClick}
                         name={'Current location'} 

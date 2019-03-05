@@ -101,6 +101,7 @@ export class CurrentLocation extends React.Component {
     };
   }
   componentDidMount() {
+      console.log(this.state, 'state here?')
       console.log(this.props, 'props here?')
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
@@ -119,6 +120,7 @@ export class CurrentLocation extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    //   console.log(this.props.zipCode, 'props after update')
     if (prevProps.google !== this.props.google) {
       this.loadMap();
     }
