@@ -100,6 +100,7 @@ export class CurrentLocation extends React.Component {
       }
     };
   }
+
   componentDidMount() {
       console.log(this.state, 'state here?')
       console.log(this.props, 'props here?')
