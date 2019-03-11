@@ -1,6 +1,7 @@
 {
   "name": "map_project",
   "version": "0.1.0",
+  "homepage": "https://bvreeman.github.io/mapProject/",
   "private": true,
   "dependencies": {
     "dotenv": "^6.0.0",
@@ -14,11 +15,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "nodemon": "^1.18.3"
   },
   "author": "Brandon Vreeman",
